@@ -20,18 +20,51 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('layouts.createUpdateUser');
+        return view('layouts.createUser');
     }
 
     public function store(Request $request)
     {
-        $user = User::create($request->all());
-        return response()->json($user, 200);
+
+        $validatedUserData = $request->validate([
+            'name' => '', 
+            'lastName' => '', 
+            'email' => '', 
+            'birthDate' => ''
+        ]);
+
+        $validatedPhoneData = $request->validate([
+            'phoneOne' => '', 
+            'phoneTwo' => '', 
+            'phoneTree' => '', 
+            'phoneFour' => '', 
+            'phoneFive' => '', 
+            'phoneSix' => ''
+        ]);
+                
+        $validatedAddressData = $request->validate([
+            'zipCode' => '', 
+            'state' => '', 
+            'city' => '', 
+            'neighborhood' => '', 
+            'street' => '', 
+            'number' => ''
+        ]);
+
+            // abre uma transaction
+            // tenta cadastrar juntamente com os relacionamentos
+            // retorna sucess ou fail
+     
     }
 
     public function show(User $user)
     {
-        return view('layouts.createUpdateUser', compact('user', $user));
+        return view('layouts.showUser', compact('user', $user));       
+    }
+
+    public function edit(User $user)
+    {
+        return view('layouts.updateUser', compact('user', $user));
     }
 
     public function update(Request $request, User $user)

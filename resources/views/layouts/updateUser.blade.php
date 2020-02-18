@@ -35,29 +35,29 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="zipCode">zipCode</label>
-                <input type="text" class="form-control form-control-sm" id="zipCode" name="zipCode" value="{{ old('zipCode') ?? '' }}">
+                <input type="text" class="form-control form-control-sm" id="zipCode" name="zipCode" value="{{ old('zipCode') ?? $user->address->zip_code }}">
             </div>
             <div class="form-group col-md-2">
                 <label for="state">UF</label>
-                <input type="text" class="form-control form-control-sm" id="state" name="state" value="{{ old('state') ?? $user->address->state }}">
+                <input type="text" class="form-control form-control-sm" id="state" name="state" value="{{ old('state') ?? $user->address->state }}" readonly>
             </div>
             <div class="form-group col-md-6">
                 <label for="city">Cidade</label>
-                <input type="text" class="form-control form-control-sm" id="city" name="city" value="{{ old('city') ?? $user->address->state }}">
+                <input type="text" class="form-control form-control-sm" id="city" name="city" value="{{ old('city') ?? $user->address->city }}" readonly>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="email">Bairro</label>
-                <input type="neighborhood" class="form-control form-control-sm" id="neighborhood" name="neighborhood" value="{{ old('neighborhood') ??$user->address->neighborhood }}">
+                <input type="neighborhood" class="form-control form-control-sm" id="neighborhood" name="neighborhood" value="{{ old('neighborhood') ??$user->address->neighborhood }}" readonly>
             </div>
             <div class="form-group col-md-6">
                 <label for="street">Rua</label>
-                <input type="text" class="form-control form-control-sm" id="street" name="street" value="{{ old('street') ?? $user->address->street }}">
+                <input type="text" class="form-control form-control-sm" id="street" name="street" value="{{ old('street') ?? $user->address->street }}" readonly> 
             </div>
             <div class="form-group col-md-2">
                 <label for="number">Numero</label>
-                <input type="text" class="form-control form-control-sm" id="number" name="number" value="{{ old('number') ?? $user->address->number }}">
+                <input type="text" class="form-control form-control-sm" id="number" name="number" value="{{ old('number') ?? $user->address->number }}" >
             </div>
         </div>   
         <div class="form-row">
@@ -71,7 +71,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="phoneThree">Telefone 3</label>
-                <input type="text" class="form-control form-control-sm" id="phoneThree" name="phoneThree" value="{{ old('phoneThree') ?? $user->phone->phone_tree }}">
+                <input type="text" class="form-control form-control-sm" id="phoneThree" name="phoneThree" value="{{ old('phoneThree') ?? $user->phone->phone_three }}">
             </div>
         </div>
         <div class="form-row">

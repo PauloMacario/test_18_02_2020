@@ -17,7 +17,7 @@ class CreatePhonesTable extends Migration
             $table->bigIncrements('id');
             $table->string('phone_one');
             $table->string('phone_two');
-            $table->string('phone_tree');
+            $table->string('phone_three');
             $table->string('phone_four');
             $table->string('phone_five');
             $table->string('phone_six');

@@ -21,11 +21,11 @@
     <tr>
       <td class="align-middle text-left">{{$user->name}} {{$user->last_name}}</td>     
       <td class="align-middle text-left">{{$user->email}} - {{$user->phone_one}}</td>
-      <td class="align-middle text-left">{{$user->birth_date}}</td>
+      <td class="align-middle text-left">{{date( 'd/m/Y' , strtotime($user->birth_date))}}</td>
       <td class="align-middle text-left">
       
       <a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn btn-info btn-sm btn-block" ">Detalhes</a>
-      <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn btn-secondary btn-sm btn-block" ">Editar</a>
+      
       
        </td>
     </tr> 
