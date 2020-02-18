@@ -21,6 +21,7 @@ class CreatePhonesTable extends Migration
             $table->string('phone_four');
             $table->string('phone_five');
             $table->string('phone_six');
+            $table->timestamps();
         });
     }
 

@@ -25,10 +25,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-
-
-       dd($request->all()); 
-
+       
+       /*  return response()->json($request->all()); */
        /*  $validatedUserData = $request->validate([
             'name' => '', 
             'lastName' => '', 
@@ -55,13 +53,13 @@ class UserController extends Controller
         ]); */
 
         $user = User::create([
-            'name'      => $request->name, 
+            'name'       => $request->name, 
             'last_name'  => $request->lastName, 
-            'email'     => $request->email, 
+            'email'      => $request->email, 
             'birth_date' => $request->birthDate
         ]);
 
-        $adress = $user->address()->create([
+        $address = $user->address()->create([
             'zip_code'      => $request->ZipCode,  
             'state'         => $request->state,  
             'city'          => $request->city,  
@@ -71,15 +69,24 @@ class UserController extends Controller
         ]);
 
         $phone = $user->phone()->create([
-            'phone_one'  =>  $request->phoneOne,   
-            'phone_two'  =>  $request->phoneTwo,   
-            'phone_three'=>  $request->phoneThree,   
-            'phone_four' =>  $request->phoneFour,   
-            'phone_five' =>  $request->phoneFive,   
-            'phone_six'  =>  $request->phoneSix,  
+            'phone_one'   =>  $request->phoneOne,   
+            'phone_two'   =>  $request->phoneTwo,   
+            'phone_three' =>  $request->phoneThree,   
+            'phone_four'  =>  $request->phoneFour,   
+            'phone_five'  =>  $request->phoneFive,   
+            'phone_six'   =>  $request->phoneSix,  
         ]);
+        
+        $json['user']    = $user;
+        $json['address'] = $address;
+        $json['phone']   = $phone;
 
-        return $user;
+
+        if ($request->expectsJson()) {
+            return response()->json($json, 201 ); 
+        }
+
+        return view('layouts.listUsers');
 
         
 
