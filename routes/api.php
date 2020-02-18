@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 
 
-Route::apiResource('user/', 'UserController');
+Route::resource('user', 'UserController');
+
+Route::resource('phone', 'PhoneController');
 
 
 

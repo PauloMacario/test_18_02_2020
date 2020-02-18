@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/blade/create', function () {
+    return view('layouts.createUpdateUser');
+});
+
+Route::get('/list', function () {
+    return view('layouts.listUsers');
 });
