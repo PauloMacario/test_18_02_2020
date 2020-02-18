@@ -26,7 +26,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        $validatedUserData = $request->validate([
+
+       dd($request->all()); 
+
+       /*  $validatedUserData = $request->validate([
             'name' => '', 
             'lastName' => '', 
             'email' => '', 
@@ -49,7 +52,38 @@ class UserController extends Controller
             'neighborhood' => '', 
             'street' => '', 
             'number' => ''
+        ]); */
+
+        $user = User::create([
+            'name'      => $request->name, 
+            'last_name'  => $request->lastName, 
+            'email'     => $request->email, 
+            'birth_date' => $request->birthDate
         ]);
+
+        $adress = $user->address()->create([
+            'zip_code'      => $request->ZipCode,  
+            'state'         => $request->state,  
+            'city'          => $request->city,  
+            'neighborhood'  => $request->neighborhood,  
+            'street'        => $request->street,  
+            'number'        => $request->number, 
+        ]);
+
+        $phone = $user->phone()->create([
+            'phone_one'  =>  $request->phoneOne,   
+            'phone_two'  =>  $request->phoneTwo,   
+            'phone_three'=>  $request->phoneThree,   
+            'phone_four' =>  $request->phoneFour,   
+            'phone_five' =>  $request->phoneFive,   
+            'phone_six'  =>  $request->phoneSix,  
+        ]);
+
+        return $user;
+
+        
+
+       /*  $address = $user */
 
             // abre uma transaction
             // tenta cadastrar juntamente com os relacionamentos

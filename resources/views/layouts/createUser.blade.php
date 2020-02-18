@@ -3,7 +3,8 @@
 @section('content')
 
 <section class="container p-5">
-    <form>
+    <form action="{{ route('user.store') }}" method="POST">
+    @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="name">Nome</label>
@@ -27,26 +28,26 @@
         
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="zipCode">zipCode</label>
+                <label for="zipCode">CEP</label>
                 <input type="text" class="form-control form-control-sm" id="zipCode" name="zipCode" >
             </div>
             <div class="form-group col-md-2">
                 <label for="state">UF</label>
-                <input type="text" class="form-control form-control-sm" id="state" name="state" readonly >
+                <input type="text" class="form-control form-control-sm" id="state" name="state"  >
             </div>
             <div class="form-group col-md-6">
                 <label for="city">Cidade</label>
-                <input type="text" class="form-control form-control-sm" id="city" name="city" readonly>
+                <input type="text" class="form-control form-control-sm" id="city" name="city" >
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="email">Bairro</label>
-                <input type="neighborhood" class="form-control form-control-sm" id="neighborhood" name="neighborhood" readonly>
+                <input type="neighborhood" class="form-control form-control-sm" id="neighborhood" name="neighborhood" >
             </div>
             <div class="form-group col-md-6">
                 <label for="street">Rua</label>
-                <input type="text" class="form-control form-control-sm" id="street" name="street" readonly>
+                <input type="text" class="form-control form-control-sm" id="street" name="street" >
             </div>
             <div class="form-group col-md-2">
                 <label for="number">Numero</label>
@@ -73,12 +74,12 @@
                 <input type="text" class="form-control form-control-sm" id="phoneFour" name="phoneFour" >
             </div>
             <div class="form-group col-md-4">
-                <label for="naphoneTwome">Telefone 5</label>
-                <input type="text" class="form-control form-control-sm" id="phoneTwo" name="phoneTwo" >
+                <label for="phoneFive">Telefone 5</label>
+                <input type="text" class="form-control form-control-sm" id="phoneFive" name="phoneFive" >
             </div>
             <div class="form-group col-md-4">
-                <label for="phoneTwo">Telefone 6</label>
-                <input type="text" class="form-control form-control-sm" id="phoneTwo" name="phoneTwo" >
+                <label for="phoneSix">Telefone 6</label>
+                <input type="text" class="form-control form-control-sm" id="phoneSix" name="phoneSix" >
             </div>
         </div>     
         <button type="submit" class="btn btn-primary">Cadastrar</button>
