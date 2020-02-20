@@ -2,10 +2,10 @@
 
 ### Requisitos 
 
-PHP 7 ou superior
-Laravel 6.0 ou superior
-Composer
-Mysql
+- PHP 7 ou superior
+- Laravel 6.0 ou superior
+- Composer
+- Mysql
 
 ### Intruções para instalação
 
