@@ -28,76 +28,42 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-       /*  return response()->json($request->all()); */
-       /*  $validatedUserData = $request->validate([
-            'name' => '',
-            'lastName' => '',
-            'email' => '',
-            'birthDate' => ''
-        ]);
+
+
+        $validatedUserData = $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+
+            ]);
+
 
         $validatedPhoneData = $request->validate([
-            'phoneOne' => '',
-            'phoneTwo' => '',
-            'phoneTree' => '',
-            'phoneFour' => '',
-            'phoneFive' => '',
-            'phoneSix' => ''
+            'phone_one' => 'required'
         ]);
 
         $validatedAddressData = $request->validate([
-            'zipCode' => '',
-            'state' => '',
-            'city' => '',
-            'neighborhood' => '',
-            'street' => '',
-            'number' => ''
-        ]); */
-
-        $user = User::create([
-            'name'       => $request->name,
-            'last_name'  => $request->lastName,
-            'email'      => $request->email,
-            'birth_date' => $request->birthDate
+            'zip_code' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'neighborhood' => 'required',
+            'street' => 'required',
+            'number' => 'required'
         ]);
 
-        $address = $user->address()->create([
-            'zip_code'      => $request->ZipCode,
-            'state'         => $request->state,
-            'city'          => $request->city,
-            'neighborhood'  => $request->neighborhood,
-            'street'        => $request->street,
-            'number'        => $request->number,
-        ]);
+        $user = User::create($validatedUserData);
 
-        $phone = $user->phone()->create([
-            'phone_one'   =>  $request->phoneOne,
-            'phone_two'   =>  $request->phoneTwo,
-            'phone_three' =>  $request->phoneThree,
-            'phone_four'  =>  $request->phoneFour,
-            'phone_five'  =>  $request->phoneFive,
-            'phone_six'   =>  $request->phoneSix,
-        ]);
+        $address = $user->address()->create($validatedAddressData);
+
+        $phone = $user->phone()->create($validatedPhoneData);
 
         $json['user']    = $user;
         $json['address'] = $address;
         $json['phone']   = $phone;
 
 
-        if ($request->expectsJson()) {
+
             return response()->json($json, 201 );
-        }
-
-        return view('layouts.listUsers');
-
-
-
-       /*  $address = $user */
-
-            // abre uma transaction
-            // tenta cadastrar juntamente com os relacionamentos
-            // retorna sucess ou fail
-
     }
 
     public function show(User $user)
@@ -109,12 +75,10 @@ class UserController extends Controller
             'phone' =>  $user->phone
 
         ];
-        /* $json['address'] = $user->address ;
-        $json['phones'] = $user->phone;
- */
+
         return response()->json($json);
 
-      /*   return view('layouts.showUser', compact('user', $user)); */
+
     }
 
     public function edit(User $user)
@@ -124,8 +88,42 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $user->update($user->all());
-        return response()->json($user, 201);
+
+        $validatedUserData = $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+
+            ]);
+
+
+        $validatedPhoneData = $request->validate([
+            'phone_one' => 'required'
+        ]);
+
+        $validatedAddressData = $request->validate([
+            'zip_code' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'neighborhood' => 'required',
+            'street' => 'required',
+            'number' => 'required'
+        ]);
+
+        $userUp = $user->create($validatedUserData);
+
+        $address = $userUp->address()->create($validatedAddressData);
+
+        $phone = $userUp->phone()->create($validatedPhoneData);
+
+        $json['user']    = $userUp;
+        $json['address'] = $address;
+        $json['phone']   = $phone;
+
+
+
+        return response()->json($json, 201 );
+
     }
 
     public function destroy(User $user)

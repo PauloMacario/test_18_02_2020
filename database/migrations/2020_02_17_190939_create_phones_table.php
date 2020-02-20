@@ -16,11 +16,11 @@ class CreatePhonesTable extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('phone_one');
-            $table->string('phone_two');
-            $table->string('phone_three');
-            $table->string('phone_four');
-            $table->string('phone_five');
-            $table->string('phone_six');
+            $table->string('phone_two')->nullable();
+            $table->string('phone_three')->nullable();
+            $table->string('phone_four')->nullable();
+            $table->string('phone_five')->nullable();
+            $table->string('phone_six')->nullable();
             $table->timestamps();
         });
     }

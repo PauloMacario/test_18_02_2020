@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/blade/create', function () {
-    return view('layouts.createUpdateUser');
-});
-
-Route::get('/list', function () {
-    return view('layouts.listUsers');
+Route::get('/', function () {
+    return redirect()->route('home.index');
 });
